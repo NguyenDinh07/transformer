@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#slider {
+    padding-top: 132px;
+}
+
+.app--wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 15px;
+    display: flex;
+}
+
+.app--wrapper__Text-to-Speech {
+    width: 50%;
+}
+
+.app--wrapper__Speech-to-Text {
+    width: 50%;
+}
+
+.text-to-speech__header {
+    height: 50px;
+    line-height: 50px;
+    color: #5e6062;
+    margin-left: 18px;
+}
+
+.text-to-speech__main {
+    height: 350px;
+    margin: 0 18px;
+}
+
+.text-to-speech__input {
+    text-align: left;
+    height: 292px;
+    width: 100%;
+    /* position: absolute; */
+    font-size: 16px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.text-to-speech_speaker {
+    display: block;
+    width: 30px;
+    margin-top: 10px;
+}
+
+.text-to-speech_speaker-btn {
+    width: 30px;
+    height: 30px;
+}
+
+.text-to-speech_speaker-icon {
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    color: #5e6062;
+    position: absolute;
+}
+
+.speech-to-text__main {
+    height: 350px;
+    margin: 0 18px;
+}
