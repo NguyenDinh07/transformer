@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "consolas", sans-serif;
 }
 
 #slider {
@@ -28,33 +29,58 @@
     height: 50px;
     line-height: 50px;
     color: #5e6062;
-    margin-left: 18px;
+    margin-left: 24px;
+}
+
+.text-to-speech__header h2 {
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+}
+
+.text-to-speech__header-icon {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 25px;
 }
 
 .text-to-speech__main {
-    height: 350px;
-    margin: 0 18px;
+    height: 288px;
+    position: relative;
+    margin: 0 24px;
 }
 
-.text-to-speech__input {
-    text-align: left;
-    height: 292px;
-    width: 100%;
-    /* position: absolute; */
-    font-size: 16px;
-    position: relative;
-    padding-left: 10px;
+#text-to-speech__input {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: calc(100% - 70px);
+    min-height: calc(100% - 70px);
+    padding: 10px;
+    font-size: 18px;
+    border: none;
 }
 
 .text-to-speech_speaker {
     display: block;
-    width: 30px;
-    margin-top: 10px;
+    width: 35px;
+    margin-top: 20px;
+    position: absolute;
+    left: 0;
+    top: 220px;
 }
 
 .text-to-speech_speaker-btn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    font-size: 20px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.text-to-speech_speaker-btn:hover {
+    background-color: rgb(224 224 224);
 }
 
 .text-to-speech_speaker-icon {
@@ -62,10 +88,38 @@
     width: 30px;
     height: 30px;
     color: #5e6062;
-    position: absolute;
 }
 
 .speech-to-text__main {
-    height: 350px;
-    margin: 0 18px;
+    height: 288px;
+    margin: 0 24px 0px 0px;
+}
+
+.speech-to-text__header {
+    height: 50px;
+    line-height: 50px;
+    color: #5e6062;
+    margin-right: 24px;
+    font-size: 18px;
+}
+
+.speech-to-text__header h2 {
+    display: flex;
+    align-items: center;
+}
+
+.speech-to-text__input {
+    min-height: 60px;
+    width: 100%;
+    font-size: 16px;
+    padding-left: 10px;
+    border: none
+}
+
+.text-to-speech__input:focus-visible {
+    border: 1px solid #dddddd;
+} 
+
+.speech-to-text__input:focus-visible {
+    border: 1px solid #dddddd;
 }
