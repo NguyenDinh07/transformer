@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/fonts/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.2.0-web/css/all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.4.0-web/css/all.css">
 </head>
 <body>
     <div id="main">
@@ -27,9 +27,22 @@
                         </h2>
                     </div>
                     <div class="text-to-speech__main">
-                        <textarea name="" id="text-to-speech__input" cols="30" rows="10"></textarea>
+                        <textarea placeholder="Nhập văn bản vào đây" name="" id="text-to-speech__input" cols="30" rows="10"></textarea>
                             <span class="text-to-speech_speaker">
-                                <button class="text-to-speech_speaker-btn ti-volume"></button>
+                                <button class="text-to-speech_speaker-btn play-btn active-btn">
+                                <i class="playing fa-solid fa-circle-play"></i>
+                                </button>
+                                <div class="btn-features">
+                                    <p class="btn-features_content">
+                                        Nghe
+                                    </p>
+                                </div>
+                                <button class="text-to-speech_speaker-btn not-first-btn active-btn">
+                                <i class="fa-solid fa-copy"></i>
+                                </button>
+                                <!-- <button class="text-to-speech_speaker-btn stop-btn">
+                                <i class="stopable fa-solid fa-circle-stop"></i>
+                                </button> -->
                             </span>                       
                     </div>
                 </div>
@@ -37,14 +50,18 @@
                 <div class="app--wrapper__Speech-to-Text">
                     <div class="speech-to-text__header">
                         <h2 class="">Speech to Text
-                        <span class="text-to-speech__header-icon ti-microphone"></span>
+                        <span class="text-to-speech__header-icon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </span>
                         </h2>
                     </div>
                     <div class="speech-to-text__main">
                         <input type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói...">
-                            <!-- <span class="text-to-speech_speaker">
-                                <i class="fa-solid fa-volume text-to-speech_speaker-icon"></i>
-                            </span>                           -->
+                        <span class="speech-to-text__buttons">
+                            <button class="speech-to-text_copy-btn active-btn">
+                            <i class="fa-solid fa-copy"></i>
+                            </button> 
+                        </span>                           
                     </div>
                 </div>
             </div>

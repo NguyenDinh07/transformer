@@ -97,14 +97,22 @@
     margin-top: 12px;
 }
 
-#text-to-speech__input:focus-visible {
+#text-to-speech__input:focus {
     outline: 1px solid #dddddd;
     border-radius: 4px;
 }
 
+.text-to-speech__input:focus-visible {
+    border: 1px solid #dddddd;
+} 
+
+.speech-to-text__input:focus-visible {
+    border: 1px solid #dddddd;
+}
+
 .text-to-speech_speaker {
-    display: block;
-    width: 35px;
+    display: flex;
+    width: 100px;
     margin-top: 18px;
     position: absolute;
     left: 0;
@@ -112,14 +120,13 @@
 }
 
 .text-to-speech_speaker-btn {
-    width: 40px;
-    font-size: 20px;
-    height: 40px;
+    width: 44px;
+    font-size: 28px;
+    height: 44px;
     border: none;
     background-color: transparent;
     border-radius: 50%;
     cursor: pointer;
-    transform: (-40%, 40%);
 }
 
 @keyframes fadeVolume {
@@ -132,7 +139,11 @@
     }
 }
 
-.text-to-speech_speaker-btn:focus {
+.not-first-btn {
+    margin-left: 9px;
+}
+
+.play-btn:focus {
     animation: fadeVolume 0.7s infinite;
     background-color: rgb(224 224 224);
 }
@@ -152,6 +163,8 @@
 .speech-to-text__main {
     height: 288px;
     margin: 0 24px 0px 0px;
+    position: relative;
+
 }
 
 .speech-to-text__header {
@@ -185,13 +198,42 @@
     width: 100%;
     font-size: 16px;
     padding-left: 10px;
-    border: none
+    border: none;
 }
 
-.text-to-speech__input:focus-visible {
-    border: 1px solid #dddddd;
-} 
+.speech-to-text__buttons {
+    display: flex;
+    margin-top: 18px;
+    position: absolute;
+    left: 0;
+    top: 220px;
+    border-radius: 50%;
+}
 
-.speech-to-text__input:focus-visible {
-    border: 1px solid #dddddd;
+.speech-to-text__buttons:hover {
+    background-color: rgb(224 224 224);
+}
+
+.speech-to-text_copy-btn {
+    width: 44px;
+    font-size: 28px;
+    height: 44px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.active-btn {
+    position: relative;
+}
+
+.btn-features {
+    position: absolute;
+    top: 100%;
+    left: 3px;
+}
+
+.btn-features_content {
+
 }
