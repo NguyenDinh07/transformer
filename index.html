@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,8 +29,8 @@
                     <div class="text-to-speech__main">
                         <textarea placeholder="Nhập văn bản vào đây" name="" id="text-to-speech__input" cols="30" rows="10"></textarea>
                             <span class="text-to-speech_speaker">
-                                <button class="text-to-speech_speaker-btn play-btn active-btn">
-                                <i class="playing fa-solid fa-circle-play"></i>
+                                <button id="speaker" class="text-to-speech_speaker-btn play-btn active-btn">
+                                    <i class="playing fa-solid fa-circle-play"></i>
                                 </button>
                                 <div class="btn-features">
                                     <p class="btn-features_content">
@@ -38,7 +38,7 @@
                                     </p>
                                 </div>
                                 <button class="text-to-speech_speaker-btn not-first-btn active-btn">
-                                <i class="fa-solid fa-copy"></i>
+                                    <i class="fa-solid fa-copy"></i>
                                 </button>
                                 <!-- <button class="text-to-speech_speaker-btn stop-btn">
                                 <i class="stopable fa-solid fa-circle-stop"></i>
@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="speech-to-text.js"></script>
+    <script src="text-to-speech.js"></script>
 </body>
 </html>
