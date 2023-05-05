@@ -29,17 +29,22 @@
                     <div class="text-to-speech__main">
                         <textarea placeholder="Nhập văn bản vào đây" name="" id="text-to-speech__input" cols="30" rows="10"></textarea>
                             <span class="text-to-speech_speaker">
-                                <button id="speaker" class="text-to-speech_speaker-btn play-btn active-btn">
-                                    <i class="playing fa-solid fa-circle-play"></i>
+                                <button id="speaker" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
+                                    <i class="playing fa-solid fa-circle-play font-weight400"></i>
                                 </button>
-                                <div class="btn-features">
+                                <div class="btn-features listen-feature">
                                     <p class="btn-features_content">
-                                        Nghe
+                                        Nghe văn bản
                                     </p>
                                 </div>
-                                <button class="text-to-speech_speaker-btn not-first-btn active-btn">
-                                    <i class="fa-solid fa-copy"></i>
+                                <button class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
+                                    <i class="fa-solid fa-copy font-weight400"></i>
                                 </button>
+                                <div class="copy-features copy-feature">
+                                    <p class="btn-features_content">
+                                        Copy văn bản
+                                    </p>
+                                </div>
                                 <!-- <button class="text-to-speech_speaker-btn stop-btn">
                                 <i class="stopable fa-solid fa-circle-stop"></i>
                                 </button> -->
@@ -58,9 +63,14 @@
                     <div class="speech-to-text__main">
                         <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói...">
                         <span class="speech-to-text__buttons">
-                            <button class="speech-to-text_copy-btn active-btn">
-                            <i class="fa-solid fa-copy"></i>
-                            </button> 
+                            <button class="speech-to-text_copy-btn active-btn copy-btn">
+                                <i class="fa-solid fa-copy font-weight400"></i>
+                                </button> 
+                                <div class="copy-features copy-feature">
+                                    <p class="btn-features_content">
+                                        Copy văn bản
+                                    </p>
+                                </div>
                         </span>                           
                     </div>
                 </div>
@@ -69,5 +79,5 @@
     </div>
     <script src="speech-to-text.js"></script>
     <script src="text-to-speech.js"></script>
-</body
+</body>
 </html>
