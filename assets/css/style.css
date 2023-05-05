@@ -197,13 +197,14 @@
 }
 
 .speech-to-text__input {
-    min-height: 60px;
-    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: calc(100% - 70px);
+    min-height: calc(100% - 70px);
+    padding: 10px;
     font-size: 18px;
-    padding-left: 10px;
     border: none;
-    margin-top: 4px;
-    outline: none;
+    margin-top: 12px;
 }
 
 .speech-to-text__buttons {
