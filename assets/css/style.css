@@ -110,6 +110,26 @@
     border: 1px solid #dddddd;
 } 
 
+#text-to-speech__input2 {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: calc(100% - 70px);
+    min-height: calc(100% - 70px);
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    margin-top: 12px;
+}
+
+#text-to-speech__input2:focus {
+    outline: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+.text-to-speech__input2:focus-visible {
+    border: 1px solid #dddddd;
+} 
+
 .speech-to-text__input:focus-visible {
     outline: 1px solid #dddddd;
     border-radius: 4px;
@@ -286,4 +306,8 @@
     display: block;
     animation: featuresEmerge ease-in 0.2s;
     /* animation-delay: 0.1s; */
+}
+
+#voice-btn {
+    cursor: pointer;
 }

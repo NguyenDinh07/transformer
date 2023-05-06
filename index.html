@@ -77,8 +77,72 @@
                 </div>
             </div>
         </div>
+
+        <div id="slider">
+            <div class="app--wrapper">
+                <div class="app--wrapper__Text-to-Speech">
+                    <div class="text-to-speech__header">
+                        <h2 class="">Text to Speech chatGPT
+                            <span class="text-to-speech__header-icon ti-text"></span>
+                        </h2>
+                    </div>
+                    <div class="text-to-speech__main">
+                        <textarea placeholder="Bạn hãy đặt câu hỏi?" name="" id="text-to-speech__input2" cols="30" rows="10"></textarea>
+                            <span class="text-to-speech_speaker">
+                                <button id="speaker2" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
+                                    <i class="playing fa-solid fa-circle-play font-weight400"></i>
+                                </button>
+                                <div class="btn-features listen-feature">
+                                    <p class="btn-features_content">
+                                        Nghe văn bản
+                                    </p>
+                                </div>
+                                <button class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
+                                    <i class="fa-solid fa-copy font-weight400"></i>
+                                </button>
+                                <div class="copy-features copy-feature">
+                                    <p class="btn-features_content">
+                                        Copy văn bản
+                                    </p>
+                                </div>
+                                <!-- <button class="text-to-speech_speaker-btn stop-btn">
+                                <i class="stopable fa-solid fa-circle-stop"></i>
+                                </button> -->
+                            </span>                       
+                    </div>
+                </div>
+
+                <div class="app--wrapper__Speech-to-Text">
+                    <div class="speech-to-text__header">
+                        <h2 class="">Speech to Text chatGPT
+                            <span class="text-to-speech__header-icon">
+                                <i class="fa-solid fa-microphone" id = "voice-btn"></i>
+                            </span>
+                            <span class="text-to-speech__header-icon">
+                                <i class="fa-solid fa-volume-high" id = "speaker-btn"></i>
+                            </span>
+                        </h2>
+                    </div>
+                    <div class="speech-to-text__main">
+                        <textarea name="" id="speech-to-text__output" class="speech-to-text__input" cols="30" rows="10" placeholder="Câu trả lời của bạn ở đây..."></textarea>
+                        <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
+                        <span class="speech-to-text__buttons">
+                            <button class="speech-to-text_copy-btn active-btn copy-btn">
+                                <i class="fa-solid fa-copy font-weight400"></i>
+                                </button> 
+                                <div class="copy-features copy-feature">
+                                    <p class="btn-features_content">
+                                        Copy văn bản
+                                    </p>
+                                </div>
+                        </span>                           
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="speech-to-text.js"></script>
     <script src="text-to-speech.js"></script>
+
 </body>
 </html>
