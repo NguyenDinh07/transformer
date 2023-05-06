@@ -29,3 +29,12 @@ recognition.onerror = function(event) {
 document.querySelector('#speech-to-text__input').addEventListener('click', function(){
     recognition.start();
 });
+
+document.addEventListener('keyup', (event) => {
+    // event.preventDefault()
+    if(event.altKey 
+    && event.key === 'x') {
+        recognition.start();
+        // console.log('123')
+    }
+} )

@@ -20,3 +20,17 @@ document.getElementById('speaker').addEventListener('click', () => {
     utterance.rate = 1
     speechSynthesis.speak(utterance)
 })
+
+document.addEventListener('keyup', (event) => {
+    // if (document.activeElement.id === 'text-to-speech__input') {
+    //     return
+    // }
+    event.preventDefault();
+    if(event.ctrlKey && event.key === ' ') {
+        var msg = document.getElementById('text-to-speech__input').value
+        const utterance = new SpeechSynthesisUtterance(msg)
+        utterance.rate = 1
+        speechSynthesis.speak(utterance)
+    }
+});
+
