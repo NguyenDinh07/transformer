@@ -43,7 +43,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 
-const API_KEY = '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';
+const API_KEY = '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';
 
 document.getElementById('speaker2').addEventListener('click', async (e) => {
     e.preventDefault();
