@@ -24,6 +24,18 @@
                     <div class="text-to-speech__header">
                         <h2 class="">Text to Speech
                             <span class="text-to-speech__header-icon ti-text"></span>
+                            <span id="book" class="text-to-speech__header-icon ti-book text-to-speech__header-story">
+                                    <select name="" id="text-to-speech__header-story-list">
+                                        <option class="text-to-speech__header-story-listItem" value="New Divide">New Divide</option>
+                                        <option class="text-to-speech__header-story-listItem" value="Burn it down">Burn it down</option>
+                                        <option class="text-to-speech__header-story-listItem" value="In my remains">In my remains</option>
+                                    </select>
+                                    <div class="btn-features story-feature">
+                                        <p class="btn-features_content">
+                                            Nghe truyện
+                                        </p>
+                                    </div>
+                            </span>
                         </h2>
                     </div>
                     <div class="text-to-speech__main">
@@ -143,6 +155,18 @@
     </div>
     <script src="speech-to-text.js"></script>
     <script src="text-to-speech.js"></script>
+    <script>
+        const bookIcon = document.getElementById('book')
+        const storyList = document.getElementById('text-to-speech__header-story-list')
+        bookIcon.addEventListener('click', () => {
+            storyList.style.display = 'block'
+        })
 
+        document.addEventListener('click', () => {
+            if (!storyList.contains(event.target) && event.target !== bookIcon) {
+                storyList.style.display = 'none'
+            }
+        })
+    </script>
 </body>
 </html>
