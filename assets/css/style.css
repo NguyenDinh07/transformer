@@ -68,6 +68,7 @@
     width: calc(100% + 24px);
     height: 1px;
     bottom: 0;
+    font-size: 18px;
     left: -24px;
     background-color: #e0e0e0;
 }
@@ -242,7 +243,6 @@
     line-height: 50px;
     color: #5e6062;
     margin-right: 24px;
-    font-size: 18px;
     position: relative;
 }
 
@@ -258,6 +258,7 @@
 
 .speech-to-text__header h2 {
     display: flex;
+    font-size: 27px;
     align-items: center;
 }
 
