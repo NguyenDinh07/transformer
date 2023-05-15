@@ -1,3 +1,5 @@
+// import { chatGPTAnswer, text_to_speech } from "./text-to-speech";
+
 var message = document.querySelector('#speech-to-text__input');
 var messageGPT = document.querySelector('#speech-to-text__output');
 
@@ -5,7 +7,7 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 
 var grammar = '#JSGF V1.0;'
-var option = 0;
+var option = 2;
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
 var content = '';
@@ -18,42 +20,13 @@ recognition.onresult = async function (event) {
     var lastResult = event.results.length - 1;
     content = event.results[lastResult][0].transcript;
     if (option == 1) {
-        if (content) {
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`,
-                    },
-                    body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
-                        messages: [{ role: 'user', content: content }],
-                        temperature: 1.0,
-                        top_p: 0.7,
-                        n: 1,
-                        stream: false,
-                        presence_penalty: 0,
-                        frequency_penalty: 0,
-                    }),
-                });
-    
-                if (response.ok) {
-                    const data = await response.json();
-                    content = data.choices[0].message.content;
-                } else {
-                    content = 'Error: Unable to process your request.';
-                }
-            } catch (error) {
-                console.error(error);
-                content = 'Error: Unable to process your request.';
-            }
-        }
+        content = chatGPTAnswer(content);
         messageGPT.value = content + '.';
     } else {
         message.value = content + '.';
     }
     console.log(content);
+    console.log(option)
 };
 
 recognition.onspeechend = function() {
@@ -65,14 +38,22 @@ recognition.onerror = function(event) {
 }
 
 document.querySelector('#speech-to-text__input').addEventListener('click', function(){
-    option = 0;
-    recognition.start();
+    speech_to_text_input();
 });
 
 document.querySelector('#voice-btn').addEventListener('click', function(){
-    option = 1;
-    recognition.start();
+    voice_btn();
 });
+
+function speech_to_text() {
+    setOption(0);
+    recognition.start();
+}
+
+function chat_GPT_response() {
+    setOption(1);
+    recognition.start();
+}
 
 document.addEventListener('keyup', (event) => {
     // event.preventDefault()
@@ -84,8 +65,31 @@ document.addEventListener('keyup', (event) => {
 } )
 
 document.getElementById('speaker-btn').addEventListener('click', () => {
-    const utterance = new SpeechSynthesisUtterance(content)
-    console.log(xSpeech.voices = xSpeech.synth.getVoices())
-    utterance.voice = xSpeech.voices[3];
-    speechSynthesis.speak(utterance)
+    text_to_speech(getContent())
 })
+
+function speech_to_text_input(){
+    recognition.onspeechend();
+    speech_to_text();
+}
+
+function voice_btn() {
+    recognition.onspeechend();
+    chat_GPT_response();
+}
+
+function speaker_btn() {
+    text_to_speech(getContent());
+}
+
+function getContent() {
+    return content
+}
+
+function getOption() {
+    return option;
+}
+
+function setOption(a) {
+    option = a;
+}

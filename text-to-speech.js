@@ -19,36 +19,70 @@ const xSpeech = {};
 // Capture a Web Speech Synthesis Instance
 xSpeech.synth = window.speechSynthesis || null;
 
+xSpeech.selectMenu = document.querySelector('#selectVoice');
+
 // Voices available
 xSpeech.voices = [];
+
+xSpeech.populateVoiceList = function () {
+    // fetch voices
+    xSpeech.voices = xSpeech.synth.getVoices();
+    // loop through while creating an Option Element for the Select Element
+    for(let i = 0; i < xSpeech.voices.length ; i++) {
+        // create Option Element
+        let option = document.createElement('option');
+        // The name and language of the Voice
+        option.textContent = xSpeech.voices[i].name + ' (' + xSpeech.voices[i].lang + ')';
+        // Check if the current language is Default
+        if(xSpeech.voices[i].default) {
+            option.textContent += ' -- DEFAULT';
+        }
+        // Create attributes to store a Voice's specs
+        option.setAttribute('data-lang', xSpeech.voices[i].lang);
+        option.setAttribute('data-name', xSpeech.voices[i].name);
+        // Add it to the Select Menu
+        xSpeech.selectMenu.appendChild(option);
+    }
+};
+
 document.getElementById('speaker').addEventListener('click', () => {
-    var msg = document.getElementById('text-to-speech__input').value.trim();
-    console.log(xSpeech.voices = xSpeech.synth.getVoices())
-    const utterance = new SpeechSynthesisUtterance(msg)
-    utterance.voice = xSpeech.voices[3];
-    speechSynthesis.speak(utterance)
+    text_to_speech_input();
 })
 
 document.addEventListener('keyup', (event) => {
-    // if (document.activeElement.id === 'text-to-speech__input') {
-    //     return
-    // }
     event.preventDefault();
     if(event.ctrlKey && event.key === ' ') {
-        var msg = document.getElementById('text-to-speech__input').value
-        const utterance = new SpeechSynthesisUtterance(msg)
-        utterance.voice = xSpeech.voices[3];
-        speechSynthesis.speak(utterance)
+        text_to_speech_input();
     }
 });
-
 
 const API_KEY = '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';
 
 document.getElementById('speaker2').addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log(xSpeech.voices = xSpeech.synth.getVoices())
-    var msg = document.getElementById('text-to-speech__input2').value.trim();
+    text_to_speech_input2();
+})
+
+function selectedVoice() {
+    let num = 0;
+    let selectedOption = xSpeech.selectMenu.selectedOptions[0].getAttribute('data-name');
+    // Loop through searching for the selected Language
+    for(let i = 0; i < xSpeech.voices.length ; i++) {
+      if(xSpeech.voices[i].name === selectedOption) {
+        num = i;
+        break;
+      }
+    }
+    return num;
+}
+
+function text_to_speech(msg) {
+    const utterance = new SpeechSynthesisUtterance(msg)
+    utterance.voice = xSpeech.voices[selectedVoice()];
+    speechSynthesis.speak(utterance)
+}
+
+async function chatGPTAnswer (msg) {
     if (msg) {
         try {
             const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -80,7 +114,16 @@ document.getElementById('speaker2').addEventListener('click', async (e) => {
             msg = 'Error: Unable to process your request.';
         }
     }
-    const utterance = new SpeechSynthesisUtterance(msg)
-    utterance.voice = xSpeech.voices[3];
-    speechSynthesis.speak(utterance)
-})
+    return msg;
+}
+
+function text_to_speech_input(){
+    var msg = document.getElementById('text-to-speech__input').value.trim();
+    text_to_speech(msg);
+}
+
+function text_to_speech_input2(){
+    var msg = document.getElementById('text-to-speech__input2').value.trim();
+    msg = chatGPTAnswer(msg);
+    text_to_speech(msg);
+}

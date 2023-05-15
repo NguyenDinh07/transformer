@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,68 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.4.0-web/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
-<body>
+
+<body onload="xSpeech.populateVoiceList()">
     <div id="main">
         <div id="header">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingModal">
+                Setting
+            </button>
 
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GPTModal">
+                Chat GPT
+            </button>
+
+            <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Setting</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <label for="selectVoice" class="h5"><b>Voice</b></label>
+                                <select id="selectVoice" class="w3-input w3-light-grey"></select>
+                            </div>        
+
+                            <div id="key-bindings-menu">
+                                <h2>Key Bindings</h2>
+                                <form>
+                                    <label for="speechKey">Speech->Text:  </label>
+                                    <input type="text" id="speechKey" data-default-key="ArrowUp" maxlength="1">
+                                    <br>
+                                    <label for="voiceKey">Text->Speech:  </label>
+                                    <input type="text" id="voiceKey" data-default-key="ArrowDown" maxlength="1">
+                                    <br>
+                                    <label for="speechGPTKey">Chat GPT ans:  </label>
+                                    <input type="text" id="speechGPTKey" data-default-key="ArrowLeft" maxlength="1">
+                                    <br>
+                                    <label for="voiceGPTKey">Chat GPT ask:  </label>
+                                    <input type="text" id="voiceGPTKey" data-default-key="ArrowRight" maxlength="1">
+                                    <br>
+                                    <label for="audioGPTKey">Chat GPT audio:</label>
+                                    <input type="text" id="audioGPTKey" data-default-key="ArrowRight" maxlength="1">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="save-btn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="slider">
             <div class="wrapper-background">
-                
+
             </div>
             <div class="app--wrapper">
                 <div class="app--wrapper__Text-to-Speech">
@@ -25,137 +78,162 @@
                         <h2 class="">Text to Speech
                             <span class="text-to-speech__header-icon ti-text"></span>
                             <span id="book" class="text-to-speech__header-icon ti-book text-to-speech__header-story">
-                                    <select name="" id="text-to-speech__header-story-list">
-                                        <option class="text-to-speech__header-story-listItem" value="New Divide">New Divide</option>
-                                        <option class="text-to-speech__header-story-listItem" value="Burn it down">Burn it down</option>
-                                        <option class="text-to-speech__header-story-listItem" value="In my remains">In my remains</option>
-                                    </select>
-                                    <div class="btn-features story-feature">
-                                        <p class="btn-features_content">
-                                            Nghe truyện
-                                        </p>
-                                    </div>
+                                <select name="" id="text-to-speech__header-story-list">
+                                    <option class="text-to-speech__header-story-listItem" value="New Divide">New Divide
+                                    </option>
+                                    <option class="text-to-speech__header-story-listItem" value="Burn it down">Burn it
+                                        down</option>
+                                    <option class="text-to-speech__header-story-listItem" value="In my remains">In my
+                                        remains</option>
+                                </select>
+                                <div class="btn-features story-feature">
+                                    <p class="btn-features_content">
+                                        Nghe truyện
+                                    </p>
+                                </div>
                             </span>
                         </h2>
                     </div>
                     <div class="text-to-speech__main">
-                        <textarea placeholder="Nhập văn bản vào đây" name="" id="text-to-speech__input" cols="30" rows="10"></textarea>
-                            <span class="text-to-speech_speaker">
-                                <button id="speaker" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
-                                    <i class="playing fa-solid fa-circle-play font-weight400"></i>
-                                </button>
-                                <div class="btn-features listen-feature">
-                                    <p class="btn-features_content">
-                                        Nghe văn bản
-                                    </p>
-                                </div>
-                                <button class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
-                                    <i class="fa-solid fa-copy font-weight400"></i>
-                                </button>
-                                <div class="copy-features copy-feature">
-                                    <p class="btn-features_content">
-                                        Copy văn bản
-                                    </p>
-                                </div>
-                                <!-- <button class="text-to-speech_speaker-btn stop-btn">
-                                <i class="stopable fa-solid fa-circle-stop"></i>
-                                </button> -->
-                            </span>                       
+                        <textarea placeholder="Nhập văn bản vào đây" onblur="keybindMain()" name="" id="text-to-speech__input" cols="30"
+                            rows="10"></textarea>
+                        <span class="text-to-speech_speaker">
+                            <button id="speaker" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
+                                <i class="playing fa-solid fa-circle-play font-weight400"></i>
+                            </button>
+                            <div class="btn-features listen-feature">
+                                <p class="btn-features_content">
+                                    Nghe văn bản
+                                </p>
+                            </div>
+                            <button class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
+                                <i class="fa-solid fa-copy font-weight400"></i>
+                            </button>
+                            <div class="copy-features copy-feature">
+                                <p class="btn-features_content">
+                                    Copy văn bản
+                                </p>
+                            </div>
+                        </span>
                     </div>
                 </div>
 
                 <div class="app--wrapper__Speech-to-Text">
                     <div class="speech-to-text__header">
                         <h2 class="">Speech to Text
-                        <span class="text-to-speech__header-icon">
-                            <i class="fa-solid fa-microphone"></i>
+                            <span class="text-to-speech__header-icon">
+                                <i class="fa-solid fa-microphone"></i>
+                            </span>
+                        </h2>
+                    </div>
+                    <div class="speech-to-text__main">
+                        <textarea name="" id="speech-to-text__input" class="speech-to-text__input" cols="30" rows="10"
+                            placeholder="Bấm vào đây để nói..."></textarea>
+                        <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
+                        <span class="speech-to-text__buttons">
+                            <button class="speech-to-text_copy-btn active-btn copy-btn">
+                                <i class="fa-solid fa-copy font-weight400"></i>
+                            </button>
+                            <div class="copy-features copy-feature">
+                                <p class="btn-features_content">
+                                    Copy văn bản
+                                </p>
+                            </div>
                         </span>
-                        </h2>
-                    </div>
-                    <div class="speech-to-text__main">
-                        <textarea name="" id="speech-to-text__input" class="speech-to-text__input" cols="30" rows="10" placeholder="Bấm vào đây để nói..."></textarea>
-                        <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
-                        <span class="speech-to-text__buttons">
-                            <button class="speech-to-text_copy-btn active-btn copy-btn">
-                                <i class="fa-solid fa-copy font-weight400"></i>
-                                </button> 
-                                <div class="copy-features copy-feature">
-                                    <p class="btn-features_content">
-                                        Copy văn bản
-                                    </p>
-                                </div>
-                        </span>                           
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="slider">
-            <div class="app--wrapper">
-                <div class="app--wrapper__Text-to-Speech">
-                    <div class="text-to-speech__header">
-                        <h2 class="">Text to Speech chatGPT
-                            <span class="text-to-speech__header-icon ti-text"></span>
-                        </h2>
+        <div class="modal fade" id="GPTModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="text-to-speech__main">
-                        <textarea placeholder="Bạn hãy đặt câu hỏi?" name="" id="text-to-speech__input2" cols="30" rows="10"></textarea>
-                            <span class="text-to-speech_speaker">
-                                <button id="speaker2" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
-                                    <i class="playing fa-solid fa-circle-play font-weight400"></i>
-                                </button>
-                                <div class="btn-features listen-feature">
-                                    <p class="btn-features_content">
-                                        Nghe văn bản
-                                    </p>
+                    <div class="modal-body">
+                        <div id="">
+                            <div class="app--wrapper">
+                                <div class="app--wrapper__Text-to-Speech">
+                                    <div class="text-to-speech__header">
+                                        <h2 class="">Text to Speech chatGPT
+                                            <span class="text-to-speech__header-icon ti-text"></span>
+                                        </h2>
+                                    </div>
+                                    <div class="text-to-speech__main">
+                                        <textarea placeholder="Bạn hãy đặt câu hỏi?" onblur="keybindMain()" name="" id="text-to-speech__input2"
+                                            cols="30" rows="10"></textarea>
+                                        <span class="text-to-speech_speaker">
+                                            <button id="speaker2"
+                                                class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
+                                                <i class="playing fa-solid fa-circle-play font-weight400"></i>
+                                            </button>
+                                            <div class="btn-features listen-feature">
+                                                <p class="btn-features_content">
+                                                    Nghe văn bản
+                                                </p>
+                                            </div>
+                                            <button
+                                                class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
+                                                <i class="fa-solid fa-copy font-weight400"></i>
+                                            </button>
+                                            <div class="copy-features copy-feature">
+                                                <p class="btn-features_content">
+                                                    Copy văn bản
+                                                </p>
+                                            </div>
+                                            <!-- <button class="text-to-speech_speaker-btn stop-btn">
+                                            <i class="stopable fa-solid fa-circle-stop"></i>
+                                            </button> -->
+                                        </span>
+                                    </div>
                                 </div>
-                                <button class="text-to-speech_speaker-btn not-first-btn active-btn copy-btn">
-                                    <i class="fa-solid fa-copy font-weight400"></i>
-                                </button>
-                                <div class="copy-features copy-feature">
-                                    <p class="btn-features_content">
-                                        Copy văn bản
-                                    </p>
-                                </div>
-                                <!-- <button class="text-to-speech_speaker-btn stop-btn">
-                                <i class="stopable fa-solid fa-circle-stop"></i>
-                                </button> -->
-                            </span>                       
-                    </div>
-                </div>
 
-                <div class="app--wrapper__Speech-to-Text">
-                    <div class="speech-to-text__header">
-                        <h2 class="">Speech to Text chatGPT
-                            <span class="text-to-speech__header-icon">
-                                <i class="fa-solid fa-microphone" id = "voice-btn"></i>
-                            </span>
-                            <span class="text-to-speech__header-icon">
-                                <i class="fa-solid fa-volume-high" id = "speaker-btn"></i>
-                            </span>
-                        </h2>
-                    </div>
-                    <div class="speech-to-text__main">
-                        <textarea name="" id="speech-to-text__output" class="speech-to-text__input" cols="30" rows="10" placeholder="Câu trả lời của bạn ở đây..."></textarea>
-                        <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
-                        <span class="speech-to-text__buttons">
-                            <button class="speech-to-text_copy-btn active-btn copy-btn">
-                                <i class="fa-solid fa-copy font-weight400"></i>
-                                </button> 
-                                <div class="copy-features copy-feature">
-                                    <p class="btn-features_content">
-                                        Copy văn bản
-                                    </p>
+                                <div class="app--wrapper__Speech-to-Text">
+                                    <div class="speech-to-text__header">
+                                        <h2 class="">Speech to Text chatGPT
+                                            <span class="text-to-speech__header-icon">
+                                                <i class="fa-solid fa-microphone" id="voice-btn"></i>
+                                            </span>
+                                            <span class="text-to-speech__header-icon">
+                                                <i class="fa-solid fa-volume-high" id="speaker-btn"></i>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <div class="speech-to-text__main">
+                                        <textarea name="" id="speech-to-text__output" class="speech-to-text__input"
+                                            cols="30" rows="10" placeholder="Câu trả lời của bạn ở đây..."></textarea>
+                                        <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
+                                        <span class="speech-to-text__buttons">
+                                            <button class="speech-to-text_copy-btn active-btn copy-btn">
+                                                <i class="fa-solid fa-copy font-weight400"></i>
+                                            </button>
+                                            <div class="copy-features copy-feature">
+                                                <p class="btn-features_content">
+                                                    Copy văn bản
+                                                </p>
+                                            </div>
+                                        </span>
+                                    </div>
                                 </div>
-                        </span>                           
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
+
     <script src="speech-to-text.js"></script>
     <script src="text-to-speech.js"></script>
     <script>
+        var checkInput = 0;
         const bookIcon = document.getElementById('book')
         const storyList = document.getElementById('text-to-speech__header-story-list')
         bookIcon.addEventListener('click', () => {
@@ -167,6 +245,99 @@
                 storyList.style.display = 'none'
             }
         })
+
+        const keyBindings = {};
+
+        function loadKeyBindings() {
+            // Load key bindings from local storage if they exist, otherwise use default keys
+            keyBindings["SpeechKey"] = localStorage.getItem("SpeechKey");
+            keyBindings["VoiceKey"] = localStorage.getItem("VoiceKey");
+            keyBindings["SpeechGPTKey"] = localStorage.getItem("SpeechGPTKey");
+            keyBindings["VoiceGPTKey"] = localStorage.getItem("VoiceGPTKey");
+            keyBindings["AudioGPTKey"] = localStorage.getItem("AudioGPTKey");
+
+            // Update input fields with current key bindings
+            document.getElementById("speechKey").value = keyBindings["SpeechKey"];
+            document.getElementById("voiceKey").value = keyBindings["VoiceKey"];
+            document.getElementById("speechGPTKey").value = keyBindings["SpeechGPTKey"];
+            document.getElementById("voiceGPTKey").value = keyBindings["VoiceGPTKey"];
+            document.getElementById("audioGPTKey").value = keyBindings["AudioGPTKey"];
+        }
+
+        function saveKeyBindings() {
+            // Save key bindings to local storage
+            localStorage.setItem("SpeechKey", keyBindings["SpeechKey"]);
+            localStorage.setItem("VoiceKey", keyBindings["VoiceKey"]);
+            localStorage.setItem("SpeechGPTKey", keyBindings["SpeechGPTKey"]);
+            localStorage.setItem("VoiceGPTKey", keyBindings["VoiceGPTKey"]);
+            localStorage.setItem("AudioGPTKey", keyBindings["AudioGPTKey"]);
+
+            console.log("Key bindings saved!");
+        }
+
+        function setKeyBinding(inputId, command) {
+            const input = document.getElementById(inputId);
+            input.value = "Press a key...";
+
+            function handleKeyDown(event) {
+                event.preventDefault();
+                keyBindings[command] = event.code;
+                input.value = event.code;
+                document.removeEventListener("keydown", handleKeyDown);
+            }
+
+            document.addEventListener("keydown", handleKeyDown);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadKeyBindings();
+
+            document.getElementById("speechKey").addEventListener("click", function () {
+                setKeyBinding("speechKey", "SpeechKey");
+            });
+
+            document.getElementById("voiceKey").addEventListener("click", function () {
+                setKeyBinding("voiceKey", "VoiceKey");
+            });
+
+            document.getElementById("speechGPTKey").addEventListener("click", function () {
+                setKeyBinding("speechGPTKey", "SpeechGPTKey");
+            });
+
+            document.getElementById("voiceGPTKey").addEventListener("click", function () {
+                setKeyBinding("voiceGPTKey", "VoiceGPTKey");
+            });
+
+            document.getElementById("audioGPTKey").addEventListener("click", function () {
+                setKeyBinding("audioGPTKey", "AudioGPTKey");
+            });
+
+            document.getElementById("save-btn").addEventListener("click", function () {
+                saveKeyBindings();
+            });
+        });
+
+        function keybindMain() {
+            document.addEventListener("keydown", function (event) {
+                if (event.code === keyBindings["SpeechKey"]) {
+                    $('#GPTModal').modal('hide');
+                    speech_to_text_input();
+                } else if (event.code === keyBindings["VoiceKey"]) {
+                    $('#GPTModal').modal('hide');
+                    text_to_speech_input();
+                } else if (event.code === keyBindings["SpeechGPTKey"]) {
+                    $('#GPTModal').modal('show');
+                    voice_btn();
+                } else if (event.code === keyBindings["VoiceGPTKey"]) {
+                    $('#GPTModal').modal('show');
+                    text_to_speech_input2();
+                } else if (event.code === keyBindings["AudioGPTKey"]) {
+                    text_to_speech(getContent());
+                }
+            });
+        }
+        
     </script>
 </body>
+
 </html>
