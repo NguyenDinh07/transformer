@@ -37,21 +37,21 @@
                             <div>
                                 <label for="selectVoice" class="h5"><b>Voice</b></label>
                                 <select id="selectVoice" class="w3-input w3-light-grey"></select>
-                            </div>        
+                            </div>
 
                             <div id="key-bindings-menu">
                                 <h2>Key Bindings</h2>
                                 <form>
-                                    <label for="speechKey">Speech->Text:  </label>
+                                    <label for="speechKey">Speech->Text: </label>
                                     <input type="text" id="speechKey" data-default-key="ArrowUp" maxlength="1">
                                     <br>
-                                    <label for="voiceKey">Text->Speech:  </label>
+                                    <label for="voiceKey">Text->Speech: </label>
                                     <input type="text" id="voiceKey" data-default-key="ArrowDown" maxlength="1">
                                     <br>
-                                    <label for="speechGPTKey">Chat GPT ans:  </label>
+                                    <label for="speechGPTKey">Chat GPT ans: </label>
                                     <input type="text" id="speechGPTKey" data-default-key="ArrowLeft" maxlength="1">
                                     <br>
-                                    <label for="voiceGPTKey">Chat GPT ask:  </label>
+                                    <label for="voiceGPTKey">Chat GPT ask: </label>
                                     <input type="text" id="voiceGPTKey" data-default-key="ArrowRight" maxlength="1">
                                     <br>
                                     <label for="audioGPTKey">Chat GPT audio:</label>
@@ -78,14 +78,23 @@
                         <h2 class="">Text to Speech
                             <span class="text-to-speech__header-icon ti-text"></span>
                             <span id="book" class="text-to-speech__header-icon ti-book text-to-speech__header-story">
-                                <select name="" id="text-to-speech__header-story-list">
+                                <div class="dropdown">
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <input type="text" id="fakeInput">
+                                        <a value="New Divide">New Divide</a>
+                                        <a value="Burn it down">Burn it down</a>
+                                        <a value="In my remains">In my remains</a>
+                                    </div>
+                                </div>
+
+                                <!-- <select name="" id="text-to-speech__header-story-list">
                                     <option class="text-to-speech__header-story-listItem" value="New Divide">New Divide
                                     </option>
                                     <option class="text-to-speech__header-story-listItem" value="Burn it down">Burn it
                                         down</option>
                                     <option class="text-to-speech__header-story-listItem" value="In my remains">In my
                                         remains</option>
-                                </select>
+                                </select> -->
                                 <div class="btn-features story-feature">
                                     <p class="btn-features_content">
                                         Nghe truyện
@@ -95,8 +104,8 @@
                         </h2>
                     </div>
                     <div class="text-to-speech__main">
-                        <textarea placeholder="Nhập văn bản vào đây" onblur="keybindMain()" name="" id="text-to-speech__input" cols="30"
-                            rows="10"></textarea>
+                        <textarea placeholder="Nhập văn bản vào đây" name="" onblur="keybindMain()"
+                            onfocus="removeKeyBind()" id="text-to-speech__input" cols="30" rows="10"></textarea>
                         <span class="text-to-speech_speaker">
                             <button id="speaker" class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
                                 <i class="playing fa-solid fa-circle-play font-weight400"></i>
@@ -128,7 +137,8 @@
                     </div>
                     <div class="speech-to-text__main">
                         <textarea name="" id="speech-to-text__input" class="speech-to-text__input" cols="30" rows="10"
-                            placeholder="Bấm vào đây để nói..."></textarea>
+                            placeholder="Bấm vào đây để nói..." onblur="keybindMain()"
+                            onfocus="removeKeyBind()"></textarea>
                         <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
                         <span class="speech-to-text__buttons">
                             <button class="speech-to-text_copy-btn active-btn copy-btn">
@@ -149,7 +159,7 @@
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Chat GPT</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -162,7 +172,7 @@
                                         </h2>
                                     </div>
                                     <div class="text-to-speech__main">
-                                        <textarea placeholder="Bạn hãy đặt câu hỏi?" onblur="keybindMain()" name="" id="text-to-speech__input2"
+                                        <textarea placeholder="Bạn hãy đặt câu hỏi?" name="" id="text-to-speech__input2"
                                             cols="30" rows="10"></textarea>
                                         <span class="text-to-speech_speaker">
                                             <button id="speaker2"
@@ -235,9 +245,11 @@
     <script>
         var checkInput = 0;
         const bookIcon = document.getElementById('book')
-        const storyList = document.getElementById('text-to-speech__header-story-list')
+        // const storyList = document.getElementById('text-to-speech__header-story-list');
+        const storyList = document.getElementById('myDropdown')
         bookIcon.addEventListener('click', () => {
             storyList.style.display = 'block'
+            document.getElementById('fakeInput').focus();
         })
 
         document.addEventListener('click', () => {
@@ -250,11 +262,11 @@
 
         function loadKeyBindings() {
             // Load key bindings from local storage if they exist, otherwise use default keys
-            keyBindings["SpeechKey"] = localStorage.getItem("SpeechKey");
-            keyBindings["VoiceKey"] = localStorage.getItem("VoiceKey");
-            keyBindings["SpeechGPTKey"] = localStorage.getItem("SpeechGPTKey");
-            keyBindings["VoiceGPTKey"] = localStorage.getItem("VoiceGPTKey");
-            keyBindings["AudioGPTKey"] = localStorage.getItem("AudioGPTKey");
+            keyBindings["SpeechKey"] = localStorage.getItem("SpeechKey") || "Space";
+            keyBindings["VoiceKey"] = localStorage.getItem("VoiceKey") || "AltLeft";
+            keyBindings["SpeechGPTKey"] = localStorage.getItem("SpeechGPTKey") || "AltRight";
+            keyBindings["VoiceGPTKey"] = localStorage.getItem("VoiceGPTKey") || "ControlLeft";
+            keyBindings["AudioGPTKey"] = localStorage.getItem("AudioGPTKey") || "ControlRight";
 
             // Update input fields with current key bindings
             document.getElementById("speechKey").value = keyBindings["SpeechKey"];
@@ -318,25 +330,78 @@
         });
 
         function keybindMain() {
-            document.addEventListener("keydown", function (event) {
-                if (event.code === keyBindings["SpeechKey"]) {
-                    $('#GPTModal').modal('hide');
-                    speech_to_text_input();
-                } else if (event.code === keyBindings["VoiceKey"]) {
-                    $('#GPTModal').modal('hide');
-                    text_to_speech_input();
-                } else if (event.code === keyBindings["SpeechGPTKey"]) {
-                    $('#GPTModal').modal('show');
-                    voice_btn();
-                } else if (event.code === keyBindings["VoiceGPTKey"]) {
-                    $('#GPTModal').modal('show');
-                    text_to_speech_input2();
-                } else if (event.code === keyBindings["AudioGPTKey"]) {
-                    text_to_speech(getContent());
-                }
-            });
+            document.addEventListener("keyup", keyBindFunc);
         }
-        
+
+        function removeKeyBind() {
+            document.removeEventListener("keyup", keyBindFunc);
+        }
+
+        function keyBindFunc(event) {
+            event.preventDefault();
+            if (event.code === keyBindings["SpeechKey"]) {
+                $('#GPTModal').modal('hide');
+                speech_to_text_input();
+            } else if (event.code === keyBindings["VoiceKey"]) {
+                $('#GPTModal').modal('hide');
+                text_to_speech_input();
+            } else if (event.code === keyBindings["SpeechGPTKey"]) {
+                $('#GPTModal').modal('show');
+                voice_btn();
+            } else if (event.code === keyBindings["VoiceGPTKey"]) {
+                $('#GPTModal').modal('show');
+                text_to_speech_input2();
+            } else if (event.code === keyBindings["AudioGPTKey"]) {
+                text_to_speech(getContent());
+            }
+        }
+
+        document.getElementById("fakeInput").addEventListener("keydown", function (e) { CheckArrrow(e.keyCode); });
+        var item = 0;			//global var holding current highlit item
+        var firstItem = 0;
+        function CheckArrrow(e) {
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            item_original = item;
+
+            if (e == 40) {	//Down arrow
+                item++;
+                if (firstItem == 0) {
+                    item--;
+                    firstItem++;
+                }
+                while (item < a.length && a[item].style.display == "none") {
+                    item++;		//find next visible element
+                }
+                if (item >= a.length) {
+                    item = item_original;
+                }
+                else {		//unhighlight old selection, highlight new selection
+                    a[item_original].style.backgroundColor = "";
+                    a[item].style.backgroundColor = "#ddd";
+                    text_to_speech(a[item].innerText);
+                }
+            }
+            if (e == 38) {	//Up arrow
+                item--;
+                while (item >= 0 && a[item].style.display == "none") {
+                    item--;		//find next visible element
+                }
+                if (item < 0) {
+                    item = item_original;
+                }
+                else {	//unhighlight old selection, highlight new selection
+                    a[item_original].style.backgroundColor = "";
+                    a[item].style.backgroundColor = "#ddd";
+                    text_to_speech(a[item].innerText);
+                }
+            }
+            if (e == 39) {	//Right key
+                console.log("nanin")	//go to link
+            }
+        }
+
+        keybindMain();
     </script>
 </body>
 

@@ -77,6 +77,7 @@ function selectedVoice() {
 }
 
 function text_to_speech(msg) {
+    speechSynthesis.cancel()
     const utterance = new SpeechSynthesisUtterance(msg)
     utterance.voice = xSpeech.voices[selectedVoice()];
     speechSynthesis.speak(utterance)

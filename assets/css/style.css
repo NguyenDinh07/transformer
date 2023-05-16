@@ -361,3 +361,35 @@
 #voice-btn {
     cursor: pointer;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    max-height: 500px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown a:hover {background-color: #ddd;}
+
+  #fakeInput {
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    font-size: 0px;
+    border: none;
+  }
