@@ -17,62 +17,68 @@
 <body onload="xSpeech.populateVoiceList()">
     <div id="main">
         <div id="header">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingModal">
-                Setting
-            </button>
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GPTModal">
-                Chat GPT
-            </button>
-
-            <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Setting</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                <label for="selectVoice" class="h5"><b>Voice</b></label>
-                                <select id="selectVoice" class="w3-input w3-light-grey"></select>
-                            </div>
-
-                            <div id="key-bindings-menu">
-                                <h2>Key Bindings</h2>
-                                <form>
-                                    <label for="speechKey">Speech->Text: </label>
-                                    <input type="text" id="speechKey" data-default-key="ArrowUp" maxlength="1">
-                                    <br>
-                                    <label for="voiceKey">Text->Speech: </label>
-                                    <input type="text" id="voiceKey" data-default-key="ArrowDown" maxlength="1">
-                                    <br>
-                                    <label for="speechGPTKey">Chat GPT ans: </label>
-                                    <input type="text" id="speechGPTKey" data-default-key="ArrowLeft" maxlength="1">
-                                    <br>
-                                    <label for="voiceGPTKey">Chat GPT ask: </label>
-                                    <input type="text" id="voiceGPTKey" data-default-key="ArrowRight" maxlength="1">
-                                    <br>
-                                    <label for="audioGPTKey">Chat GPT audio:</label>
-                                    <input type="text" id="audioGPTKey" data-default-key="ArrowRight" maxlength="1">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="save-btn">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
         <div id="slider">
             <div class="wrapper-background">
-
+                
             </div>
             <div class="app--wrapper">
+                <div class="wrapper-button-container">
+                    <button type="button" class="wrapper-button" data-bs-toggle="modal" data-bs-target="#settingModal">
+                        <span class="wrapper-icon ti-settings"></span>
+                        Setting
+                    </button>
+        
+                    <button type="button" class="wrapper-button not-first-btn" data-bs-toggle="modal" data-bs-target="#GPTModal">
+                        <span class="wrapper-icon">
+                            <img class="img-gpt" src="./assets/img/icons8-chatgpt-24.png" alt="">
+                        </span>
+                        Chat GPT
+                    </button>
+                </div>
+                <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Setting</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <label for="selectVoice" class="h5"><b>Voice</b></label>
+                                    <select id="selectVoice" class="w3-input w3-light-grey"></select>
+                                </div>
+    
+                                <div id="key-bindings-menu">
+                                    <h2>Key Bindings</h2>
+                                    <form>
+                                        <label for="speechKey">Speech to Text: </label>
+                                        <input type="text" id="speechKey" data-default-key="ArrowUp" maxlength="1">
+                                        <br>
+                                        <label for="voiceKey">Text to Speech: </label>
+                                        <input type="text" id="voiceKey" data-default-key="ArrowDown" maxlength="1">
+                                        <br>
+                                        <label for="speechGPTKey">Ask ChatGPT: </label>
+                                        <input type="text" id="speechGPTKey" data-default-key="ArrowLeft" maxlength="1">
+                                        <br> 
+                                        <label for="voiceGPTKey">Open ChatGPT: </label>
+                                        <input type="text" id="voiceGPTKey" data-default-key="ArrowRight" maxlength="1">
+                                        <br>
+                                        <label for="audioGPTKey">ChatGPT Answer Audio:</label>
+                                        <input type="text" id="audioGPTKey" data-default-key="ArrowRight" maxlength="1">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="save-btn">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="app--wrapper__Text-to-Speech">
                     <div class="text-to-speech__header">
                         <h2 class="">Text to Speech
@@ -162,7 +168,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Chat GPT</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="margin-top: 62px;;">
                         <div id="">
                             <div class="app--wrapper">
                                 <div class="app--wrapper__Text-to-Speech">
@@ -230,10 +236,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

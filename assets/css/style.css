@@ -5,6 +5,18 @@
     font-family: "consolas", sans-serif;
 }
 
+#key-bindings-menu label {
+    font-size: 26px !important;
+}
+
+#key-bindings-menu h2 {
+    margin-top: 8px;
+}
+
+#key-bindings-menu input {
+    padding-left: 3px;
+} 
+
 .font-weight400 {
     font-weight: 400 !important;
 }
@@ -14,12 +26,45 @@
 }
 
 .wrapper-background {
-    height: 100px;
+    height: 140px;
     width: 100%;
     background-color: #fafafa;
     display: flex;
     position: absolute;
-    top: 75px;
+    top: 59px;
+}
+
+.wrapper-button-container {
+    position: absolute;
+    left: 0;
+    top: -56px;
+    display: flex;
+}
+
+.wrapper-button {
+    width: 114px;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 3px 2px 3px 3px;
+    border-radius: 4px;
+}
+
+.wrapper-button:hover {
+    color: rgb(25,103,210);
+    background-color: rgb(241 244 249);
+}
+
+.wrapper-icon {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.img-gpt {
+    /* margin-right: 8px; */
+    width: 17px;
+    margin-top: -3px;
 }
 
 .app--wrapper {
@@ -40,7 +85,7 @@
     height: 289px;
     width: 1px;
     background-color: #e0e0e0;
-    top: 56px;
+    top: 65px;
     right: 51%;
 }
 
@@ -54,7 +99,7 @@
 
 .text-to-speech__header {
     height: 50px;
-    margin-top: 6px;
+    margin-top: 16px;
     line-height: 50px;
     color: #5e6062;
     margin-left: 24px;
@@ -133,7 +178,7 @@
 .text-to-speech__main {
     height: 288px;
     position: relative;
-    margin: 0 24px;
+    margin: 0 16px;
 }
 
 #text-to-speech__input {
@@ -233,12 +278,12 @@
 
 .speech-to-text__main {
     height: 288px;
-    margin: 0 24px 0px 0px;
+    margin: 0 16px 0px 0px;
     position: relative;
 }
 
 .speech-to-text__header {
-    margin-top: 6px;
+    margin-top: 16px;
     height: 50px;
     line-height: 50px;
     color: #5e6062;
@@ -260,6 +305,7 @@
     display: flex;
     font-size: 27px;
     align-items: center;
+    margin-left: 7px;
 }
 
 .speech-to-text__input {
@@ -328,6 +374,7 @@
     padding: 3px 8px 3px 8px;
     font-weight: 200;
     font-size: 14px;
+    margin: 0;
 }
 
 .listen-feature {
