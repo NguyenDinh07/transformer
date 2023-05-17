@@ -137,8 +137,7 @@
                     </div>
                     <div class="speech-to-text__main">
                         <textarea name="" id="speech-to-text__input" class="speech-to-text__input" cols="30" rows="10"
-                            placeholder="Bấm vào đây để nói..." onblur="keybindMain()"
-                            onfocus="removeKeyBind()"></textarea>
+                            placeholder="Bấm vào đây để nói..." ></textarea>
                         <!-- <input id="speech-to-text__input" type="text" class="speech-to-text__input" placeholder="Bấm vào đây để nói..."> -->
                         <span class="speech-to-text__buttons">
                             <button class="speech-to-text_copy-btn active-btn copy-btn">
@@ -173,7 +172,8 @@
                                     </div>
                                     <div class="text-to-speech__main">
                                         <textarea placeholder="Bạn hãy đặt câu hỏi?" name="" id="text-to-speech__input2"
-                                            cols="30" rows="10"></textarea>
+                                            cols="30" rows="10" onblur="keybindMain()"
+                                            onfocus="removeKeyBind()"></textarea>
                                         <span class="text-to-speech_speaker">
                                             <button id="speaker2"
                                                 class="text-to-speech_speaker-btn listen-btn play-btn active-btn">
@@ -402,6 +402,10 @@
         }
 
         keybindMain();
+
+        function trash() {
+            console.log("trash");
+        }
     </script>
 </body>
 
